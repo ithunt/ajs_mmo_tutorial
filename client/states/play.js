@@ -15,6 +15,7 @@ Play.prototype = {
         this.initMap();
         this.initPathfinder();
         this.initCursor();
+        this.initControls();
         this.addMainPlayer();
         this.initChatModule();
 
@@ -46,16 +47,36 @@ Play.prototype = {
         );
     },
 
+    initControls: function() {
+        this.cursors = this.game.input.keyboard.createCursorKeys();
+
+        this.wasd = {
+            up: this.game.input.keyboard.addKey(Phaser.Keyboard.W).onDown.add(function() {
+                this.mainPlayer.moveTo(this.mainPlayer.sprite.position.x, this.mainPlayer.sprite.position.y-32);
+            }, this),
+            down: this.game.input.keyboard.addKey(Phaser.Keyboard.S).onDown.add(function() {
+                this.mainPlayer.moveTo(this.mainPlayer.sprite.position.x, this.mainPlayer.sprite.position.y+32);
+            }, this),
+            left: this.game.input.keyboard.addKey(Phaser.Keyboard.A).onDown.add(function() {
+                this.mainPlayer.moveTo(this.mainPlayer.sprite.position.x-32, this.mainPlayer.sprite.position.y);
+            }, this),
+            right: this.game.input.keyboard.addKey(Phaser.Keyboard.D).onDown.add(function() {
+                this.mainPlayer.moveTo(this.mainPlayer.sprite.position.x+32, this.mainPlayer.sprite.position.y);
+            }, this),
+        };
+
+    },
     initCursor: function(){
+        //marker is the black box drawn when you click down
         this.marker = this.game.add.graphics();
         this.marker.lineStyle(2, 0x000000, 1);
         this.marker.drawRect(0, 0, Pathfinder.tileSize, Pathfinder.tileSize);
 
         this.input.onDown.add(function(event){
             this.updateCursorPosition();
-            this.mainPlayer.moveTo(this.marker.x, this.marker.y, function(path){
-
-            });
+            //this.mainPlayer.moveTo(this.marker.x, this.marker.y, function(path){
+            //
+            //});
         }, this);
 
     },
