@@ -4,7 +4,11 @@
   "description": "mmo example with phaser express and socket.io",
   "author": "Marwane",
   "license": "ISC",
-  "devDependencies": {
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmarwane/ajs_mmo_tutorial.git"
+  },
+    "devDependencies": {
     "auto-reload-brunch": "^1.8.0",
     "brunch": "^1.8.5",
     "javascript-brunch": "^1.7.1",
